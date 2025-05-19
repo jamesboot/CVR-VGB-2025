@@ -1,26 +1,27 @@
-### Viral Genomics and Bioinformatics
-16 - 20 June 2025
-Medical Research Council-University of Glasgow Centre for Virus Research
-University of Glasgow
-Garscube Campus	
-Glasgow
-G61 1QH
+# Viral Genomics and Bioinformatics Training Course
+Monday 16th - Friday 20th June 2025  
+Medical Research Council-University of Glasgow Centre for Virus Research  
+University of Glasgow  
+Garscube Campus  
+Glasgow  
+G61 1QH  
 
-## Course Organisers
+### Course Organisers
 
-[Derek Wright](https://www.gla.ac.uk/schools/infectionimmunity/staff/derekwright/) \
-[Richard Orton](https://www.gla.ac.uk/schools/infectionimmunity/staff/richardorton/) \
+[Derek Wright](https://www.gla.ac.uk/schools/infectionimmunity/staff/derekwright/)  
+[Richard Orton](https://www.gla.ac.uk/schools/infectionimmunity/staff/richardorton/)  
 
-## Instructors
+### Instructors
 
-[Quan Gu](https://www.gla.ac.uk/schools/infectionimmunity/staff/quangu/) \
-[Joseph Hughes](https://www.gla.ac.uk/schools/infectionimmunity/staff/josephhughes/) (Course Organizer) \
-[David Robertson](https://www.gla.ac.uk/schools/infectionimmunity/staff/davidrobertson/) \
-[Sreenu Vattipally](https://www.gla.ac.uk/schools/infectionimmunity/staff/sreenuvattipally/)
+[Quan Gu](https://www.gla.ac.uk/schools/infectionimmunity/staff/quangu/)  
+[Joseph Hughes](https://www.gla.ac.uk/schools/infectionimmunity/staff/josephhughes/)  
+[David Robertson](https://www.gla.ac.uk/schools/infectionimmunity/staff/davidrobertson/)  
+[Sreenu Vattipally](https://www.gla.ac.uk/schools/infectionimmunity/staff/sreenuvattipally/)  
 
-## [Timetable-TBA](/images/TimetableProposal.pdf)
+### Course Timetable
+[Timetable-TBA](/images/TimetableProposal.pdf)
 
-## Practical Modules
+### Practical Modules
 1. [Login, setup & basic Linux](docs/Basic_Linux.md)
 2. [NGS/HTS data](docs/NGS_data.md)
 3. [Quality control and read cleaning](docs/ReadCleaning.md)
