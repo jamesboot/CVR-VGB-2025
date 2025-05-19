@@ -1,8 +1,3 @@
----
-title: "Transcriptomics"
-layout: default
----
-
 # RNA-Seq Workshop
 ## 7th Viral Bioinformatics and Genomics Training Course, Glasgow, UK
 #### [Quan Gu](https://www.gla.ac.uk/schools/infectionimmunity/staff/quangu/)  , MRC-University of Glasgow Centre for Virus Research, E-mail: quan.gu@glasgow.ac.uk 
