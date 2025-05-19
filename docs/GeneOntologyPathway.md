@@ -1,9 +1,3 @@
----
-title: "Gene ontology and pathway analysis in R"
-layout: default
-rank: 10
----
-
 ### Author: Srikeerthana Kuchi
 #### Contact: Srikeerthana.Kuchi@glasgow.ac.uk
 
