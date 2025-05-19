@@ -1,9 +1,3 @@
----
-title: "Introduction_to_Linux"
-layout: default
-rank: 1
----
-
 # Introduction to Linux
 ### Author: Srikeerthana Kuchi
 #### Contact: Srikeerthana.Kuchi@glasgow.ac.uk
