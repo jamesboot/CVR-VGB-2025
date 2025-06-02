@@ -1,6 +1,6 @@
 # RNA-Seq Workshop
 ## Viral Bioinformatics and Genomics Training Course, Glasgow, UK
-####Contact: [Quan Gu](https://www.gla.ac.uk/schools/infectionimmunity/staff/quangu/)  , MRC-University of Glasgow Centre for Virus Research, E-mail: quan.gu@glasgow.ac.uk 
+#### Contact: [Quan Gu](https://www.gla.ac.uk/schools/infectionimmunity/staff/quangu/)  , MRC-University of Glasgow Centre for Virus Research, E-mail: quan.gu@glasgow.ac.uk 
 
 A classical RNA-Seq data processing pipeline contains the following steps:
 
