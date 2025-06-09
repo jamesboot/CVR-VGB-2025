@@ -15,8 +15,17 @@ This tutorial introduces the fundamentals of  command-line text processing and B
 
 ```bash
 user@alpha2:~$ grep ">" sc2.fasta 
->NC_045512.2 Severe acute respiratory syndrome coronavirus 2 isolate Wuhan-Hu-1, complete genome
 ```
+
+<details>
+  <summary>Click me</summary> 
+  
+  ```bash
+>NC_045512.2 Severe acute respiratory syndrome coronavirus 2 isolate Wuhan-Hu-1, complete genome
+  ```
+</details>
+
+
 
 Another example would be extracting the gene names from genbank files. We also use the `-o` flag to print only the parts of the input that match the expression rather than the full line.
 
@@ -46,7 +55,14 @@ user@alpha2:~$ grep "gene=" sarscov2.gb
 Using a basic regular expression `'".*"' ` (This one captures all strings within "" parenthesis), we can take grep a little further and trim this output so that we only get the gene names rather than the genbank formated line.
 
 ```bash
-user@alpha2:~$ grep "gene=" Datasets/sarscov2.gb | grep -o '".*"'               
+user@alpha2:~$ grep "gene=" sarscov2.gb | grep -o '".*"'               
+
+```
+
+<details>
+  <summary>Click me</summary>
+  
+  ```bash
 "ORF1ab"
 "S"
 "ORF3a"
@@ -58,85 +74,174 @@ user@alpha2:~$ grep "gene=" Datasets/sarscov2.gb | grep -o '".*"'
 "ORF8"
 "N"
 "ORF10"
-```
+  ```
+</details>
+
 
 `grep`  is one of the most powerful commands for processing text files in linux, and is especially useful when used in conjunction with other commands.
 
 **Task 1:**
-Extract the lines containing the paper titles in the sarscov2.gb file
+Extract the lines containing the paper titles ("TITLE") in the sarscov2.gb file
+
+<details>
+  <summary>Don't cheat</summary>
+  
+  ```bash
+grep "TITLE" sarscov2.gb
+  ```
+</details>
+
+
 
  
 ### 1.3 `head`, `tail` for File Previews
+
+Use `head` to look at the top lines of a file. `-n 5` will show the top 5 lines.
 
 ```bash
 head -n 5 metadata.csv
 tail -n 3 metadata.csv
 ```
 
-### 1.4 `awk` for Field Filtering
+Useful command to skip the first N lines of a file `tail -n +<N+1> <filename>` so the following command will skip the first line of the metadata.csv file:
 
 ```bash
-awk -F"," '$3=="Philippines" {print $4}' covid.csv
+tail -n +2 metadata.csv
 ```
 
-**Task 3:** Extract the total cases per day for the UK.
+
+
 
 ### 1.5 `wc` for Line and Word Counts
 
+`wc` can be used for counting the number of lines in a file with the argument `-l` or the number of words with `-w` or the number of characters `-c`.
+
 ```bash
-wc -l covid_spreadsheet.csv
+wc -l metadata.csv
 ```
 
 ---
 
 ### 1.6 Piping and Redirecting (`|`,`>`,`<`) 
 
-```bash
-head -n 100 data.csv | tail -n 10 > last10.csv
-echo "New line" >> notes.txt
-```
-
 
 We might want to perform a series of different commands on the command line. We can do this using the pipe (`|`) and redirection (`>`,`<`) operators when using different commands. A pipe takes the standard output of one command and sends it as the standard input of another command. Using our `head` and `tail` commands, we can extract lines 495-500 by piping the output of the `head` command into the input of the `tail` command like this:
 
 ```bash
-user@alpha2:~$ head -n 500 owid-covid-data.csv | tail -n 5  
-AFG,Asia,Afghanistan,2021-07-02,122156.0,1940.0,1509.143,5048.0,2970.086,47.169,36.693
-AFG,Asia,Afghanistan,2021-07-03,123485.0,1329.0,1480.143,5107.0,3002.399,32.313,35.988
-AFG,Asia,Afghanistan,2021-07-04,124748.0,1263.0,1504.0,5199.0,3033.108,30.708,36.568
-AFG,Asia,Afghanistan,2021-07-05,125937.0,1189.0,1455.143,5283.0,3062.017,28.909,35.38
-AFG,Asia,Afghanistan,2021-07-06,127464.0,1527.0,1472.286,5360.0,3099.144,37.127,35.797
+user@alpha2:~$ head -n 500 metadata.csv | tail -n 5  
+
 ```
+
+<details>
+  <summary>Don't cheat</summary>
+  
+  ```bash
+UK,UK-ENG,NORTHAMPTONSHIRE,MILK-28E97EC,2021-10-31,SANG,97,AY.4
+UK,UK-ENG,GREATER LONDON,HSLL-28E764B,2021-10-28,SANG,96,AY.4
+UK,UK-ENG,EAST RIDING OF YORKSHIRE,QEUH-28E3946,2021-10-31,SANG,97,AY.4
+UK,UK-ENG,GREATER LONDON,HSLL-28E7A4F,2021-10-28,SANG,96,AY.4
+UK,UK-NIR,BELFAST,NIRE-014205,2021-10-21,NIRE,95,AY.4
+  ```
+</details>
+
 
 Lets say we want to save the output of this into a file. we can do this using a redirect (`>`) like so:
 
 ```bash
-user@alpha2:~$ head -n 500 owid-covid-data.csv | tail -n 5  > 5_rows.txt
+user@alpha2:~$ head -n 500 metadata.csv | tail -n 5  > 5_rows.txt
 ```
+
 The `>` takes the output that would normally be printed to the terminal and redirects it into a file called "5_rows.txt". If this file does not exist, the file is created and filled with the output. If the file already exists, the file will be wiped blank and filled with the contents. If we want to keep what is already in the file, we can use the `>>` operator to append to the file.
 
 ```bash
-user@alpha2:~$ head -n 505 owid-covid-data.csv | tail -n 5  >> 5_rows.txt
+user@alpha2:~$ head -n 505 metadata.csv | tail -n 5  >> 5_rows.txt
 ```
+
+
+### 1.7 `cat` to view and concatenate 
+
 
 To check whether we have appended the rows to the file, we can use `cat` to display the file contents:
 
 ```bash
 user@alpha2:~$ cat 5_rows.txt 
-AFG,Asia,Afghanistan,2021-07-02,122156.0,1940.0,1509.143,5048.0,2970.086,47.169,36.693
-AFG,Asia,Afghanistan,2021-07-03,123485.0,1329.0,1480.143,5107.0,3002.399,32.313,35.988
-...
-AFG,Asia,Afghanistan,2021-07-10,132777.0,1191.0,1327.429,5638.0,3228.324,28.958,32.275
-AFG,Asia,Afghanistan,2021-07-11,133578.0,801.0,1261.429,5724.0,3247.799,19.475,30.67
 ```
+
+<details>
+  <summary>Click me</summary>
+  
+  ```bash
+UK,UK-ENG,NORTHAMPTONSHIRE,MILK-28E97EC,2021-10-31,SANG,97,AY.4
+UK,UK-ENG,GREATER LONDON,HSLL-28E764B,2021-10-28,SANG,96,AY.4
+UK,UK-ENG,EAST RIDING OF YORKSHIRE,QEUH-28E3946,2021-10-31,SANG,97,AY.4
+UK,UK-ENG,GREATER LONDON,HSLL-28E7A4F,2021-10-28,SANG,96,AY.4
+UK,UK-NIR,BELFAST,NIRE-014205,2021-10-21,NIRE,95,AY.4
+UK,UK-NIR,LISBURN AND CASTLEREAGH,NIRE-0142b8,2021-10-21,NIRE,95,AY.4
+UK,UK-NIR,ARDS AND NORTH DOWN,NIRE-0142c6,2021-10-20,NIRE,95,AY.4
+UK,UK-ENG,NOTTINGHAMSHIRE,ALDP-28B5163,2021-10-28,SANG,96,AY.4
+UK,UK-ENG,LANCASHIRE,QEUH-28B7D30,2021-10-27,SANG,96,AY.4
+UK,UK-ENG,NOTTINGHAMSHIRE,ALDP-28B80FA,2021-10-28,SANG,96,AY.4
+  ```
+</details>
+
+
+`cat` can also be used to concatenate two or more files, for example:
+
+```bash
+user@alpha2:~$ cat sc2.fasta omicron.fasta > two_seq.fasta
+```
+
 
 ----
 
+**Task 2:**
+Use `grep` to check that you now have two sequences in the `two_seq.fasta` file
+<details>
+  <summary>Don't cheat</summary>
+ 
+  ```bash
+grep ">" two_seq.fasta
+  ```
+Or depending on what you want, pipe and count the lines
+
+  ```bash
+grep ">" two_seq.fasta | wc -l
+  ```
+</br></details>
+
+
+
+**Task 3:**
+Use `head` to retrieve the first line of the metadata.csv file use the redirect operator to make a new file header.csv 10_metadata.csv.
+
+<details>
+  <summary>Don't cheat</summary>
+  
+  ```bash
+head -n 1 metadata.csv > header.csv
+  ```
+</br></details>
+
 **Task 4:**
-Use `head` to retrieve the first 10 lines of the owid-covid-data.csv file use the redirect operator to make a new file called 10_owid.csv.
+Retrieve the 90-100 lines of the metadata.csv save as 10line_metadata.csv
+
+<details>
+  <summary>Don't cheat</summary>
+  
+  ```bash
+head -n 100 metadata.csv | tail -n 10 > 10line_metadata.csv
+  ```
+</br></details>
 
 **Task 5:**
-Retrieve the first 100 lines of the owid-covid-data.csv and pipe the output to retrieve the last 10 lines, before redirecting this to a new file.
+Add the header.csv to the top of the 10line_metadata.csv file to create a subset.csv file
+<details>
+  <summary>Don't cheat</summary>
+  
+  ```bash
+cat header.csv 10line_metadata.csv > subset.csv
+  ```
+</br></details>
 
 ----
 
@@ -145,26 +250,43 @@ Retrieve the first 100 lines of the owid-covid-data.csv and pipe the output to r
 The `sort` command allows for files to be sorted, and a number of flags can be used to specify how the sorting should be done. 2 useful flags when sorting formatted data like csv or tsv files are the `-t` flag which indicates the character that separates the columns and the `-k` flag which allows for column selection.
 
 ```bash
-user@alpha2:~$ sort 5_rows.txt -t "," -k 4   
-AFG,Asia,Afghanistan,2021-07-11,133578.0,801.0,1261.429,5724.0,3247.799,19.475,30.67
-AFG,Asia,Afghanistan,2021-07-10,132777.0,1191.0,1327.429,5638.0,3228.324,28.958,32.275
-AFG,Asia,Afghanistan,2021-07-09,131586.0,1473.0,1347.143,5561.0,3199.366,35.814,32.754
-AFG,Asia,Afghanistan,2021-07-08,130113.0,1092.0,1413.857,5477.0,3163.552,26.551,34.376
-AFG,Asia,Afghanistan,2021-07-05,125937.0,1189.0,1455.143,5283.0,3062.017,28.909,35.38
-AFG,Asia,Afghanistan,2021-07-06,127464.0,1527.0,1472.286,5360.0,3099.144,37.127,35.797
-AFG,Asia,Afghanistan,2021-07-03,123485.0,1329.0,1480.143,5107.0,3002.399,32.313,35.988
-AFG,Asia,Afghanistan,2021-07-07,129021.0,1557.0,1480.286,5415.0,3137.001,37.857,35.991
-AFG,Asia,Afghanistan,2021-07-04,124748.0,1263.0,1504.0,5199.0,3033.108,30.708,36.568
-AFG,Asia,Afghanistan,2021-07-02,122156.0,1940.0,1509.143,5048.0,2970.086,47.169,36.693
+user@alpha2:~$ sort 5_rows.txt -t "," -k 5  
 ```
-By specifying the separator as a `,` and setting `-k 4`, we have sorted the file according to the 4 column of the csv file. By default the order is ascending, but the `-r` flag can be used to invert this behaviour to descending.
+
+<details>
+  <summary>Click me</summary>
+
+  ```bash
+UK,UK-NIR,ARDS AND NORTH DOWN,NIRE-0142c6,2021-10-20,NIRE,95,AY.4
+UK,UK-NIR,BELFAST,NIRE-014205,2021-10-21,NIRE,95,AY.4
+UK,UK-NIR,LISBURN AND CASTLEREAGH,NIRE-0142b8,2021-10-21,NIRE,95,AY.4
+UK,UK-ENG,LANCASHIRE,QEUH-28B7D30,2021-10-27,SANG,96,AY.4
+UK,UK-ENG,GREATER LONDON,HSLL-28E764B,2021-10-28,SANG,96,AY.4
+UK,UK-ENG,GREATER LONDON,HSLL-28E7A4F,2021-10-28,SANG,96,AY.4
+UK,UK-ENG,NOTTINGHAMSHIRE,ALDP-28B5163,2021-10-28,SANG,96,AY.4
+UK,UK-ENG,NOTTINGHAMSHIRE,ALDP-28B80FA,2021-10-28,SANG,96,AY.4
+UK,UK-ENG,EAST RIDING OF YORKSHIRE,QEUH-28E3946,2021-10-31,SANG,97,AY.4
+UK,UK-ENG,NORTHAMPTONSHIRE,MILK-28E97EC,2021-10-31,SANG,97,AY.4
+  ```
+</br></details>
+
+By specifying the separator as a `,` and setting `-k 5`, we have sorted the file according to the 5 column of the csv file. By default the order is ascending, but the `-r` flag can be used to invert this behaviour to descending.
 
 `sort` can also be used with the `-u` flag to make the sorted output unique (i.e it is similar to sorting a file and then piping the output to `uniq`)
 
 ----
 
 **Task 6:**
-Use `head` to retrieve the first 10 lines of the owid-covid-data.csv file and then sort the output on the 4th column.
+Use `head` to retrieve the first 10 lines of the metadata.csv file and then sort the output on the 3th column.
+
+<details>
+  <summary>Don't cheat</summary>
+
+  ```bash
+head -n 10 metadata.csv |  sort -t "," -k 3
+  ```
+</br></details>
+
 
 ----
 
@@ -173,24 +295,29 @@ Use `head` to retrieve the first 10 lines of the owid-covid-data.csv file and th
 The `cut` command allows for the selection of sections of files (such as a column, byte, or field). Similar to `sort`, `cut` takes a delimiter/separator flag (`-d`) and a flag to specify which type of `cut` operation you want to use (`-c` for characters, `-f` for fields/named columns, and `-b` for bytes). 
 
 ```bash
-user@alpha2:~$ cut -d "," -f 1,5 5_rows.txt
-AFG,122156.0
-AFG,123485.0
-AFG,124748.0
-AFG,125937.0
-AFG,127464.0
-AFG,129021.0
-AFG,130113.0
-AFG,131586.0
-AFG,132777.0
-AFG,133578.0
+user@alpha2:~$ cut -d"," -f1,5 5_rows.txt 
 ```
+
+<details>
+  <summary>Click me</summary>
+
+  ```bash
+UK,2021-10-31
+UK,2021-10-28
+UK,2021-10-31
+UK,2021-10-28
+UK,2021-10-21
+UK,2021-10-21
+UK,2021-10-20
+UK,2021-10-28
+UK,2021-10-27
+UK,2021-10-28
+  ```
+</br></details>
+
+
 The `-f` flag takes lists of columns using `,`, or `-` so multiple columns can be selected. 
 
-----
-
-### Task 15
-Use `head` to retrieve the first 10 lines of the owid-covid-data.csv file, then retrieve the 1st column and display it.
 
 ----
 
@@ -198,38 +325,35 @@ Use `head` to retrieve the first 10 lines of the owid-covid-data.csv file, then 
 `uniq` allows for filtering of duplicate parts of a file (but only where the lines follow each other). At its most basic, `uniq` with used with no flags will output only unique lines of a sorted file. We can see this in action by selecting the first column
 
 ```bash
-user@alpha2:~$ cut -d "," -f 2 owid-covid-data.csv| sort | uniq
+user@alpha2:~$ cut -d "," -f 2 5_rows.txt| sort | uniq
 
-Africa
-Asia
-Europe
-North America
-Oceania
-South America
-continent
+UK-ENG
+UK-NIR
 ```
 By sorting the continent column, duplicate continent labels can be filtered by `uniq` since they will appear after each other. Try the command again without the `sort` to see how this behaviour changes.
 
-----
-
-### Task 16
-Use `head` to retrieve the first 1000 lines of the owid-covid-data.csv file (excluding the header), retrieve the 1st column and filter for unique entries.
-
-----
-
-
-### 1.2 `cut`, `sort`, and `uniq` for Field and Value Extraction
+The argument `-c` can be used with `uniq` to count the number of occurrences:
 
 ```bash
-cut -d"," -f2 metadata.csv | sort | uniq
+user@alpha2:~$ cut -d "," -f 2 5_rows.txt| sort | uniq -c
+      7 UK-ENG
+      3 UK-NIR
 ```
 
-**Task 2:** Count how many unique countries are in a COVID-19 dataset.
 
+----
 
+### Task 7
+Use `head` to retrieve the first 1000 lines of the metadata.csv file (excluding the header), retrieve the 2st column and count the number of unique occurrences of the entries.
 
-### Task 18
-Extract the lines from the owid-covid-data.csv file that are from the Philippines, sort by the number of new cases and print the top row.
+<details>
+  <summary>Don't cheat</summary>
+
+  ```bash
+tail +2 metadata.csv | head -n 1000 | cut -d"," -f2 | sort | uniq -c
+  ```
+</br></details>
+
 
 ----
 
@@ -237,29 +361,30 @@ Extract the lines from the owid-covid-data.csv file that are from the Philippine
 `sed` is a command that allows for editing of a text stream. It allows for printing, deleting and replacing of regular expressions, words or characters in text streams like files. `sed` takes a string that specifies how the incoming text should be processed. For printing the `p` character can be used with a number (which indicates a line number) or a range (indicates a line range). By default the entire contents of the input stream will be printed, but this can be suppressed using the `-n` flag.
 
 ```bash
-user@alpha2:~$ sed -n "1p" owid-covid-data.csv 
-iso_code,continent,location,date,total_cases,new_cases,new_cases_smoothed,total_deaths,total_cases_per_million,new_cases_per_million,new_cases_smoothed_per_millioncomplete 
+user@alpha2:~$ sed -n "1p" metadata.csv 
+country,adm1,adm2,central_sample_id,collection_date,sequencing_org_code,epi_week,lineage
 
-user@alpha2:~$ sed -n "1,5p" owid-covid-data.csv 
-iso_code,continent,location,date,total_cases,new_cases,new_cases_smoothed,total_deaths,total_cases_per_million,new_cases_per_million,new_cases_smoothed_per_million
-AFG,Asia,Afghanistan,2020-02-24,5.0,5.0,,,0.122,0.122,
-AFG,Asia,Afghanistan,2020-02-25,5.0,0.0,,,0.122,0.0,
-AFG,Asia,Afghanistan,2020-02-26,5.0,0.0,,,0.122,0.0,
-AFG,Asia,Afghanistan,2020-02-27,5.0,0.0,,,0.122,0.0,
+user@alpha2:~$ sed -n "1,5p" metadata.csv 
+country,adm1,adm2,central_sample_id,collection_date,sequencing_org_code,epi_week,lineage
+UK,UK-SCT,GLASGOW,QEUH-2A6D335,2021-11-13,SANG,98,AY.4.2
+UK,UK-SCT,GLASGOW,QEUH-2A53806,2021-11-12,SANG,98,AY.43
+UK,UK-SCT,GLASGOW,QEUH-2A35B7A,2021-11-12,SANG,98,B.1.617.2
+UK,UK-SCT,GLASGOW,QEUH-2A35B2F,2021-11-11,SANG,98,AY.4
 ```
 
 The `d` character can be used to delete lines in a similar manner. Here we delete the first line of the file before piping it to head to show that the firt line is no longer the header. `-n` is not needed here since we are wanting everyting that has not been deleted.
 
 ```bash
-user@alpha2:~$ sed "1d" owid-covid-data.csv | head -n 1
+user@alpha2:~$ sed "1d" metadata.csv | head -n 1
+UK,UK-SCT,GLASGOW,QEUH-2A6D335,2021-11-13,SANG,98,AY.4.2
 ```
 Important to note as well, `sed` does not be default change the contents of the original file, unless the `-i` flag is used.
 
 The `s` character is used to indicate a string substitution, with slashes used to indicate the search term followed by the replacement term. 
 
 ```bash
-user@alpha2:~$ head -n 1 owid-covid-data.csv | sed -n 's/location/Loc/p'    
-iso_code,continent,Loc,date,total_cases,new_cases,new_cases_smoothed,total_deaths,total_cases_per_million,new_cases_per_million,new_cases_smoothed_per_million
+user@alpha2:~$ head -n 1 subset.csv | sed -n 's/country/COUNTRY/p'    
+COUNTRY,adm1,adm2,central_sample_id,collection_date,sequencing_org_code,epi_week,lineage
 ```
 
 Numbers can be used after the last `/` to indicate what instance of the string should be changed (for example if you only want to substitute the second occurrence of a word). The `g` character can also be place here to indicate that the change should be made globally (be default, `sed` only changes the first instance). Regular expressions can be used with `sed` as well to capture more complex patterns to substitute.
@@ -267,97 +392,18 @@ Numbers can be used after the last `/` to indicate what instance of the string s
 
 ----
  
-### Task 19
-Use `sed` to get lines 500-600 from the owid-covid-data.csv file and save them to a file.
-
  
-### Task 20
-Get the lines from the owid-covid-data.csv file that have GBR in them, substitute UK for United Kingdom, then save the output to another file.
+### Task 8
+Get the lines from the metadata.csv that have UK-SCT in them, substitute UK-SCT for Scotland, then save the output to another file.
 
-----
+<details>
+  <summary>Don't cheat</summary>
 
+  ```bash
+sed 's/UK-SCT/Scotland/' metadata.csv > modified_metadata.csv
+  ```
+</br></details>
 
-## 1.14: `awk` 
-`awk` is a command that takes a input file/stream, splits the input lines into fields, matches input lines to searchable patters (similar to `grep` and `sed`) and allows for operations to be carried out on them. `awk` takes a patter which specifies what operations should be carried out. The most basic `awk` pattern is just to print the contents of the input stream or file:
-
-
-```bash
-user@alpha2:~$ head owid-covid-data.csv | awk "{print}" 
-iso_code,continent,location,date,total_cases,new_cases,new_cases_smoothed,total_deaths,total_cases_per_million,new_cases_per_million,new_cases_smoothed_per_million
-AFG,Asia,Afghanistan,2020-02-24,5.0,5.0,,,0.122,0.122,
-AFG,Asia,Afghanistan,2020-02-25,5.0,0.0,,,0.122,0.0,
-AFG,Asia,Afghanistan,2020-02-26,5.0,0.0,,,0.122,0.0,
-AFG,Asia,Afghanistan,2020-02-27,5.0,0.0,,,0.122,0.0,
-AFG,Asia,Afghanistan,2020-02-28,5.0,0.0,,,0.122,0.0,
-AFG,Asia,Afghanistan,2020-02-29,5.0,0.0,0.714,,0.122,0.0,0.017
-AFG,Asia,Afghanistan,2020-03-01,5.0,0.0,0.714,,0.122,0.0,0.017
-AFG,Asia,Afghanistan,2020-03-02,5.0,0.0,0.0,,0.122,0.0,0.0
-AFG,Asia,Afghanistan,2020-03-03,5.0,0.0,0.0,,0.122,0.0,0.0
-```
-Here, we add a pattern to search for (GBR) which allows for lines with this pattern to be printed:
-
-```bash
-user@alpha2:~$ awk "/GBR/ {print}" owid-covid-data.csv  
-GBR,Europe,United Kingdom,2020-01-30,,,,1.0,,,
-GBR,Europe,United Kingdom,2020-01-31,2.0,2.0,,1.0,0.03,0.03,
-...
-GBR,Europe,United Kingdom,2020-02-04,8.0,0.0,,2.0,0.119,0.0,
-```
-
-By default `awk` splits fields by whitespace characters, but this can be changed by using the `-F` flag followed by the split character:
-
-
-```bash
-user@alpha2:~$ awk -F "," '/GBR/ {print $1}' owid-covid-data.csv 
-GBR
-GBR
-...
-GBR
-GBR
-```
-
-`awk` is also flexible in that if/else conditions and loops can be used within the `awk` command:
-
-
-```bash
-user@alpha2:~$ awk -F "," '/GBR/ {if ($4=="2020-02-04") print}' owid-covid-data.csv 
-GBR,Europe,United Kingdom,2020-02-04,8.0,0.0,,2.0,0.119,0.0,
-
-```
-
-----
- 
-### Task 21
-Use `awk` to get lines that contain "Philippines", and display the Date column.
-
-----
-
-## 1.15: Links
-
-Links are an alternative to copying a file. It allows for a user to easily access files in their current working directory without having to duplicate that file in the new location or give very long file paths to access the file. We can make a link using the `ln` command. 
-
-```bash
-user@alpha2:~$ ln -s [Source_File_Path] [Link_Path]
-```
-The -s flag is used to specify that the link is a softlink, and works similar to a hyperlink or alias where the new location is linked to a location elsewhere.
-If we are in our home directory, we can make a link to the Datasets/owid-covid-data.csv file and call the link covid_spreadsheet.csv as follows:
-
-```bash
-user@alpha2:~$ ln -s Datasets/owid-covid-data.csv covid_spreadsheet.csv
-```
-Looking in our home directory now, you can see a file called covid_spreadsheet.csv that links to our initial Datasets/owid-covid-data.csv file but is in the more convenient location of our home director. It should be noted that it is not necessary to change the name of the file for the link.
-
-## 1.16: `wc` (word count)
-The `wc` command allows for counting words in a file. It can also be used to count characters and lines by specifying the right flag.
-
-```bash
-#Word count for covid_spreadsheet.csv
-user@alpha2:~$ wc covid_spreadsheet.csv
-#Line count for covid_spreadsheet.csv
-user@alpha2:~$ wc -l covid_spreadsheet.csv
-#Character count for covid_spreadsheet.csv
-user@alpha2:~$ wc -c covid_spreadsheet.csv
-```
 
 ----
 
@@ -407,7 +453,7 @@ Here is some text I want to save.
 `nano` displays the commonly used macros at the bottom of the interface. The user can otherwise type the contents of the file as they wish and save once they are done with Ctrl+O followed by Enter and  Ctrl+X to Exit.
 
 
-**Task:** Open a text file with `nano`, add some text, save the file and exit `nano`.
+**Task 9:** Open a text file with `nano`, add some text, save the file and exit `nano`.
 
 
 
@@ -421,12 +467,12 @@ Open `nano` on the command line and copy or write the following three lines of c
 echo "Hello World"
 ```
 
-The first line of code is the shebang, so the script know where to find the command line interpreter.
+The first line of code is the shebang, so the script knows where to find the command line interpreter.
 The second line with the # is just a comment. It is good practice to comment your code so that
 you and others that look at it, can understand what it is meant to do.
 The third line is asking for the words "Hello World" to be printed.
 
-**Task:** Save this in a file called `hello.sh`, then run it:
+**Task 10:** Save this in a file called `hello.sh`, then run it:
 
 ```bash
 chmod +x hello.sh
@@ -440,15 +486,18 @@ The `chmod` command is making your bash script executable. Then you can run the 
 
 #### 2.5.1 Hardcoding a string into a variable
 
+When bash scripting, you usually want to process a file. The file name can be hardcoded into the script as in the following example:
+
 ```bash
 #!/bin/bash
-filename="sars2.fasta"
+filename="sc2.fasta"
 echo $filename
 ```
 
 #### 2.5.2 Accepting Arguments
 
-Open `nano` and save the folliwng lines as `script.sh`
+However, it is usally more useful to write a script where the files to be processed can be provided on the command line allowing for the script to work with different file names.
+Open `nano` and save the following lines as `script.sh`
 
 ```bash
 #!/bin/bash
@@ -462,15 +511,77 @@ Make the script executable and  and run with:
 ./script.sh file1.txt file2.txt
 ```
 
-**Task:** Modify your `hello.sh` so that you accept one argument (it could be your name) from the command line and prints it out. 
+**Task 11:** Modify your `hello.sh` so that you accept two arguments from the command line in the following order: name and surname. Then print them out the surname first then the name. 
 
+<details>
+  <summary>Don't cheat</summary>
+
+  ```bash
+#!/bin/bash
+name=$1
+surname=$2
+echo $surname $name
+  ```
+
+</br></details>
 
 #### 2.5.3 Storing Command Outputs
 
+The output of a command can be stored in a variable within the bash script:
+
 ```bash
 #!/bin/bash
-csv_file=$(cat owid-covid-data.csv)
-echo "$csv_file"
+count=$(grep ">" two_seq.fasta | wc -l)
+echo "$count"
 ```
 
-**Task x:** Write a script that takes the genbank file `sarscov2.gb` as input and counts how many unique gene names the file has. Print out the name of the file and the number of unique gene names.
+**Task 12:** Write a script called `count_genes.sh` that takes the genbank file `sarscov2.gb` as input from the command line and counts how many unique gene names the file has. Print out the name of the file and the number of unique gene names.
+
+<details>
+  <summary>Don't cheat</summary>
+
+  ```bash
+#!/bin/bash
+filename=$1
+count=$(grep "gene=" $filename |  sort | uniq | wc -l)
+echo "Number of unqiue genes in $filename is $count"
+
+  ```
+
+</br></details>
+
+
+#### 2.5.4 Prefix or Suffix Removal using Parameter Expansion
+
+
+We often want to use a modified input filename as an output filename to record the results from the bash script.
+The following commands enable the prefix or suffix of a filename to be removed.
+`${var#pattern}` remove shortest match from the beginning (prefix)
+`${var%pattern}` remove shortest match from the end (suffix)
+
+For example, the following would remove the `.csv` extension of the `metadata.csv` and replace it with `.txt`:
+
+```bash
+#!/bin/bash
+input="metadata.csv"
+echo ${input%.csv}.txt
+
+```
+
+**Task 14:** Modify your script `count_genes.sh` so that it save the number of genes in a file called `sarscov2_gene_count.txt`
+
+<details>
+  <summary>Don't cheat</summary>
+
+  ```bash
+#!/bin/bash
+filename=$1
+count=$(grep "gene=" $filename |  sort | uniq | wc -l)
+echo $count > ${filename%.gb}_gene_count.txt
+
+  ```
+
+Check that the file `sarscov2_gene_count.txt` has been created and with `more sarscov2_gene_count.txt` check that it has `11`.
+
+</br></details>
+
