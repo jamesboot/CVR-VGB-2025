@@ -27,7 +27,7 @@ G61 1QH
 3. [Quality control and read cleaning](docs/ReadCleaning.md)
 4. [Reference alignment](docs/RefAlign.md)
 5. [Bash file editing & text processing](docs/TextProcessingAndBashScripting/TextProcessing.md)
-6. [Bash conditions & loops](docs/conditions_loops.md)
+6. [Bash conditions & loops](docs/TextProcessingAndBashScripting/AdvanceLinux.md)
 7. [Introduction to MSA and phylogenetics](docs/Phylogenetics.md)
 8. [De novo assembly](docs/DeNovoPracticals.md)
 9.  [De novo quality assessment](docs/QualityAssessment.md)
