@@ -2,7 +2,7 @@
 
 ## Overview
 
-This tutorial introduces the fundamentals of  command-line text processing and Bash scripting. It is especially useful for life scientists and bioinformaticians who regularly handle large datasets, such as genome sequences and metadata.
+This tutorial introduces the fundamentals of  command-line text processing and Bash scripting. Linux is especially useful for life scientists and bioinformaticians who regularly handle large datasets, such as genome sequences and metadata.
 
 
 
@@ -22,6 +22,12 @@ Another example would be extracting the gene names from genbank files. We also u
 
 ```bash
 user@alpha2:~$ grep "gene=" sarscov2.gb
+```
+
+<details>
+  <summary>Click me</summary>
+  
+  ```bash
                      /gene="ORF1ab"
                      /gene="S"
                      /gene="ORF3a"
@@ -33,7 +39,9 @@ user@alpha2:~$ grep "gene=" sarscov2.gb
                      /gene="ORF8"
                      /gene="N"
                      /gene="ORF10"
-```
+  ```
+</details>
+
 
 Using a basic regular expression `'".*"' ` (This one captures all strings within "" parenthesis), we can take grep a little further and trim this output so that we only get the gene names rather than the genbank formated line.
 
