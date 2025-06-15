@@ -1,7 +1,6 @@
 # Introduction to Linux
-### Author: Srikeerthana Kuchi
-#### Contact: Srikeerthana.Kuchi@glasgow.ac.uk
-
+### Author: Sreenu Vattipally
+#### Contact: Sreenu.Vattipally@glasgow.ac.uk
 ```
 Command line shortcuts 
 
