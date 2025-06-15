@@ -6,6 +6,8 @@ Garscube Campus
 Glasgow  
 G61 1QH  
 
+TinyURL: [https://tinyurl.com/VBIO-2025](https://tinyurl.com/VBIO-2025)
+
 ### Course Organisers
 
 [Derek Wright](https://www.gla.ac.uk/schools/infectionimmunity/staff/derekwright/)  
