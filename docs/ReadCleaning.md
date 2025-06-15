@@ -69,7 +69,7 @@ If you now list (ls) the contents of this directory you should see a pair of FAS
 ls
 ```
 
-You should see that there are is a set of paired end reads. Files belonging to the same pair have exactly the same name except that one is labelled with \_R1\_ and one is labelled with \_R2\_ which signifies that these are the Read1 and Read2 files of the pair. NB: Sometimes instead of R1 and R2 they are simply labelled 1 and 2, either at the end of somewhere in the middle of the filename.
+You should see that there are is a set of paired end reads. Files belonging to the same pair have exactly the same name except that one is labelled with \_R1\_ and one is labelled with \_R2\_ which signifies that these are the Read1 and Read2 files of the pair. NB: Sometimes instead of R1 and R2 they are simply labelled 1 and 2, either at the end of the filename or somewhere in the middle of the filename.
  
 * U2008751-n5\_S4\_L001\_R1\_001.fastq.gz
 * U2008751-n5\_S4\_L001\_R2\_001.fastq.gz
@@ -83,6 +83,10 @@ gunzip *.gz
 The * is a wildcard and tells the computer to **gunzip** all files that end in .gz (***.gz**)
  
 If you list (ls) the directory contents now you should see the unzipped files:
+
+```
+ls
+```
  
 * U2008751-n5\_S4\_L001\_R1\_001.fastq
 * U2008751-n5\_S4\_L001\_R2\_001.fastq
@@ -206,7 +210,17 @@ You should see these trimmed FASTQ files:
 * U2008751-n5\_S4\_L001\_R1\_001\_val\_1.fq    
 * U2008751-n5\_S4\_L001\_R2\_001\_val\_2.fq
 
-## 4: QC Notes
+## 4: Trimming on your own
+
+You should now attempt to apply what you have learnt to the second sample in the QC folder. You will need to:
+
+1) **Move** into the appropriate folder to work
+2) **Unzip** the reads
+3) Use **prinseq** to count the numnber of reads and bases etc
+4) Run **fastqc** on the reads and view the results with firefox (or copy the HTML output to your local mahcine to view)
+5) Run **Trim Galore** on the reads using the same quality and length setting used previously
+ 
+## 5: QC Notes
  
 **What quality threshold should you use?** 
 
