@@ -19,7 +19,7 @@ G61 1QH
 [Sreenu Vattipally](https://www.gla.ac.uk/schools/infectionimmunity/staff/sreenuvattipally/)  
 
 ### Course Timetable
-[Timetable-TBA](/images/TimetableProposal.pdf)
+[Timetable](/docs/ViralBioinformatics2025-CourseTimetable.pdf)
 
 ### Practical Modules
 1. [Login, setup & basic Linux](docs/Basic_Linux.md)
