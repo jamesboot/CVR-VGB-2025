@@ -22,53 +22,52 @@ Ctrl+u: Removes till the beginning
 
 ## Introduction
 
-[Linux](#info) is an open-source operating system ([OS](#info)) developed based on the kernel created by Linus Benedict Torvalds. In the last two decades, Linux has gained much popularity and now is being used on many platforms. Nowadays, most high-end servers to mobile phones (Android OS or iOS) run on different variants of Linux.
+[Linux](#info) is an open-source operating system ([OS](#info)) developed based on the kernel created by Linus Benedict Torvalds. Over the last two decades, Linux has gained significant popularity and is now used on numerous platforms. Nowadays, most high-end servers and mobile phones (running Android OS or iOS) are powered by different variants of Linux.
 
-Linux computers/servers are installed for multi-user usage. In this course, we will work on a high performance cluster machine running [Ubuntu](#info) server edition. Most of the commands specified in this manual can be used in any other distribution (i.e., CentOS, Debian, etc.) of Linux operating system.
+Linux computers/servers are installed for multi-user usage. In this course, we will work on a high-performance cluster machine running [Ubuntu](#info) Server Edition. Most of the commands specified in this manual can be used in any other distribution (i.e., CentOS, Debian, etc.) of the Linux operating system.
 
 #### Resource: How to install Ubuntu? <span style='color: red;'>(Please do not install if you are unsure of what you are doing)</span>
 
-To install a desktop edition of Ubuntu on personal computers, please follow the instructions in the following link.
-[Install Ubuntu](https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-desktop#0)
+To install a desktop edition of Ubuntu on your personal computer, please follow the instructions at the following link. [Install Ubuntu](https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-desktop#0)
 
 ### The Terminal
 
-We use terminal (AKA command line interface) to interact with the operating system. The terminal by default runs one of the “shells”. Shell is a program that sits between the user and the [kernel](#info) and translates user commands (text) into machine code. The advantages of using command line are greater control and flexibility over the system or software and multiple commands can be saved in a file and executed as a program.
+We use a terminal (also known as a command-line interface) to interact with the operating system. The terminal runs one of the “shells” by default. Shell is a program that sits between the user and the [kernel](#info), translating user commands (text) into machine code. The advantages of using the command line are greater control and flexibility over the system or software, and multiple commands can be saved in a file and executed as a program.
 
 The most common shells are:
 
-Bourne Shell \
-Bourne Again Shell – BASH (variant is Z Shell) \
-C Shell (variant is T Shell) \
-K Shell 
+- Bourne Shell
+- Bourne Again Shell – BASH (variant is Z Shell)
+- C Shell (variant is T Shell)
+- K Shell 
 
-Among these Bourne Again Shell (BASH) is the most popular one. This is the default shell on the system, and we will be using it throughout this course. 
+Among these, Bourne Again Shell (BASH) is the most popular one. This is the default shell on the system, and we will be using it throughout this course. 
 
-#### Connecting to Linux Server
+#### Connecting to the Linux Server
 
-In this course, we will be using MobaXterm application to access the Ubuntu OS. Please use the provided username and password to login into your account.
+In this course, we will use the MobaXterm application to access the Ubuntu operating system. Please use the provided username and password to log in into your account.
 
 > Open MobaXterm -> Sessions -> New session -> [ssh](#info) -> add remote host and username -> OK -> Enter password -> Don't save password
 
-> Files can be downloaded and uploaded into the server
+> Files can be downloaded and uploaded to the server
 
 ### Linux command structure
 
-When you open a terminal in Linux, (MobaXterm by default opens a terminal), you will see a command prompt, ready to take commands. The default location on the terminal is your “home directory”. It is represented with ~ (tilde) symbol.
+When you open a terminal in Linux (MobaXterm defaults to opening a terminal), you will see a command prompt, ready to accept commands. The default location on the terminal is your “home directory”. It is represented with the ~ (tilde) symbol.
 
-Copy the command below and paste it into your command line to copy the contents of the directory Linux to your home directory.
-
-```bash
-cp -R /home4/VBG_data/Linux .
-```
-
-All Linux commands are single words (can be alpha-numeric), with optional parameters followed by arguments. For historical reasons, some of the early commands are only two letter long and case sensitive. Most of the command options (also called flags) are single letters. They should be specified after the command before giving any input. 
+Copy the command below and paste it into your command line to copy the contents of the Linux directory to your home directory.
 
 ```bash
-ls -l Linux
+cp -r ~bvv2t/LinuxExamples .
 ```
 
-"ls" is the command to list the contents of the directory, "-l" is the option for long listing and "Linux" is the input, which is optional in this case. Without the input, "ls" shows all the contents of the current directory (Type <mark style="background-color: lightblue">ls -l</mark>). 
+All Linux commands are single words (can be alpha-numeric), with optional parameters followed by arguments. For historical reasons, some of the early commands are only two letters long and case sensitive. Most of the command options (also referred to as flags) are represented by single letters. They should be specified after the command before giving any input. 
+
+```bash
+ls -l
+```
+
+The "ls" command lists the contents of a directory, "-l" is the option for long listing. Without the input, "ls" shows all the contents of the current directory. 
 
 To clear the terminal screen,
 
@@ -78,19 +77,13 @@ clear
 
 ### First Commands
 
-Directories are the Unix equivalent of folders on a [PC](#info) or a [Mac](#info). They are organized in a hierarchy, so directories can have sub-directories and so on. Directories, like folders, are useful to keep your data files organized. The location or directory you are currently in, is called the current working directory. The location or “full pathname” of the file SARS-CoV-2.fa in the 'Linux' directory can be expressed as: 
-
-```
-Do not type this - won't work
-/home_location/username/Linux
-```
+Directories are the Unix equivalent of folders on a [PC](#info) or a [Mac](#info). They are organised in a hierarchy so that directories can have sub-directories and so on. Directories, like folders, are helpful to keep your data files organised. The location or directory you are currently in is called the current working directory. 
 
 #### Tab completion
 
-Typing out longer file names can be boring, and you are likely to make typos that will, at best, make your command fail with a strange error and at worst, overwrite some of your carefully crafted analysis. 
+Typing out longer file names can be boring, and you are likely to make typos that will, at best, make your command fail with a strange error and, at worst, overwrite some of your carefully crafted analysis. 
 
-Tab completion is a trick that normally reduces this risk significantly. Instead of typing out "ls Interesting_stuff/", try typing “ls Int” and press the Tab button (instead of Enter). The rest of the folder/file names that begin with “Int” should be listed. If you have two folders/files with similar names (e.g., my_awesome_scripts/ and my_awesome_results/) then you might need to give your terminal a bit of a hand to work out which one you want. In this case if you type "ls –l m", when you press Tab the terminal would read "ls –l my_awesome_". You could then type "s" followed by another press of Tab button and it would figure out that you meant "my_awesome_scripts/".
-
+Tab completion is a trick that typically reduces this risk significantly. Instead of typing out `ls LinuxExamples`, try typing `ls Li` and pressing the Tab button (instead of Enter). The rest of the folder/file names that begin with `Li` should be auto-completed.
 ### Info
 
 | Terminology | Description                                                                                 |
@@ -117,9 +110,9 @@ Tab completion is a trick that normally reduces this risk significantly. Instead
 *(a)* [ls](https://manpages.ubuntu.com/manpages/focal/en/man1/ls.1plan9.html) \
 Lists information about the files/directories. Default is the current directory. Sorts entries alphabetically. 
 
-Commonly used options: \
--l long list \
--a show all files (including hidden files) \
+Commonly used options:
+-l long list
+-a show all files (including hidden files)
 -t sort based on last modified time 
 
 ```bash
@@ -146,19 +139,14 @@ pwd
 Change current working directory to the specified directory. 
 
 ```bash
-cd Linux/
+cd LinuxExamples
 pwd
 ```
 
-We are now in the directory "Linux". Typing the command "cd .." changes it to the parent directory from which the previous command was typed in. Typing "cd" will change the current directory to the home directory.
-
-```bash
-cd ..
-cd Linux/
-```
+We are now in the directory `LinuxExamples`. Typing the command `cd ..` changes it to the parent directory from which the previous command was typed in. Typing `cd` will change the current directory to the home directory.
 
 *(d)* [mkdir](https://manpages.ubuntu.com/manpages/focal/en/man1/mkdir.1.html) \
-This command creates a directory in the current working directory if no directory exists with the specified name. 
+This command creates a directory in the current working directory if one with the specified name does not already exist. 
 
 ```bash
 mkdir Practice
@@ -174,7 +162,7 @@ ls -l
 ```
 
 *(f)* [touch](https://manpages.ubuntu.com/manpages/focal/en/man1/touch.1posix.html) \
-It is file’s time-stamp changing command. However, it can be used to create an empty file. This command is generally used to check if there is write permission for the current user.
+It is file’s time-stamp changing command. However, it can be used to create an empty file. This command is typically used to verify whether the current user has write permission.
 
 ```bash
 touch temp-file
@@ -227,14 +215,14 @@ ls -l
 The concatenate command combines files (sequentially) and prints on the screen (standard output).
 
 ```bash
-cat SARS-CoV-2.fa
+cat Ebola.fa
 ```
 
 *(b)* [more](https://manpages.ubuntu.com/manpages/focal/en/man1/more.1posix.html)/[less](https://manpages.ubuntu.com/manpages/focal/en/man1/less.1.html) \
 These commands are used for viewing the content of the files; faster with large input files than text editors; not the entire file is read at the beginning.
 
 ```bash
-more SARS-CoV-2.fa
+more Ebola.fa
 ```
 
 Press “Enter” to view lines further and “q” to quit the program
@@ -243,33 +231,34 @@ Press “Enter” to view lines further and “q” to quit the program
 These commands show first/last 10 lines (default) respectively from a file.
 
 ```bash
-head SARS-CoV-2.fa
+head Ebola.fa
 ```
 
 ### File editors
 
 There are many non-graphical text editors like ed, emacs, vi and nano available on most Linux distributions. Some of them are very sophisticated (e.g., vi) and for advanced users. 
 
-[Nano](https://manpages.ubuntu.com/manpages/focal/en/man1/nano.1.html) (earlier called pico) is like any graphical editor without a mouse. All commands are executed using the keyboard, using the <CTRL> key modifier. It can be used to edit virtually any kind of text file from the command line. Nano without a file name gives you a standard (blank) nano window. 
+[Nano](https://manpages.ubuntu.com/manpages/focal/en/man1/nano.1.html) (earlier called pico) is like any graphical editor without a mouse. All commands are executed using the keyboard, using the `Control (Ctrl)` key modifier. It can be used to edit virtually any kind of text file from the command line. Nano without a file name gives you a standard (blank) nano window. 
 
-At the bottom of the screen, there are commands with a symbol in front. The symbol tells that you need to hold down the Control (Ctrl) key, and then press the corresponding letter of the command you wish to use. 
+At the bottom of the screen, there are commands with a symbol in front. The symbol tells you that you need to hold down the `Ctrl` key, and then press the corresponding letter of the command you wish to use. 
 
-Ctrl+X will exit nano and return you to the command line. 
+#### Nano quick reference
+
 
 ```
-Nano quick reference
+Ctrl+X will exit nano and return you to the command line. 
 
-Ctrl+X: Exit the editor. If you’ve edited text without saving, you’ll be prompted as to whether you really want to exit. 
+Ctrl+X: Exit the editor. If you’ve edited text without saving, you’ll be prompted as to whether you want to exit. 
 
 Ctrl+O: Write (output) the current contents of the text buffer to a file. A filename prompt will appear; press Ctrl+T to open the file navigator shown above. 
 
-Ctrl+R: Read a text file into the current editing session. At the filename prompt, hit Ctrl+T: for the file navigator. 
+Ctrl+R: Read a text file into the current editing session. At the filename prompt, hit Ctrl+T for the file navigator. 
 
 Ctrl+K: Cut a line into the clipboard. You can press this repeatedly to copy multiple lines, which are then stored as one chunk. 
 
 Ctrl+J: Justify (fill out) a paragraph of text. By default, this reflows text to match the width of the editing window. 
 
-Ctrl+U: Uncut text, or rather, paste it from the clipboard. Note that after a Justify operation, this turns into unjustify. 
+Ctrl+U: Uncut text, or rather, paste it from the clipboard. Note that after a 'Justify' operation, this turns into 'Unjustify'. 
 
 Ctrl+T: Check spelling. 
 
@@ -279,29 +268,28 @@ Ctrl+C: Show current line number and file information.
 
 Ctrl+G: Get help; this provides information on navigating through files and common keyboard commands 
 ```
-
 ### Getting help in Linux
 
-All Linux commands have manual pages. To access them, use “man” or “info” command. The manual page gives a detailed explanation of the command, all available options and sometimes, also provides examples. For example, to view the manual page for “ls” command:
+All Linux commands have manual pages. To access them, use the `man` or `info` command. The manual page provides a detailed explanation of the command, including all available options, and sometimes includes examples. For example, to view the manual page for the `ls` command:
 
 ```bash
 man ls
 ```
 
-Please explore manual pages of all the above commands for available options. 
+Please explore the manual pages of all the above commands for available options. 
 
 ### Linux text processing
 
 *(a)* [cut](https://manpages.ubuntu.com/manpages/focal/en/man1/cut.1.html) \
-The cut command is a command line utility to cut a section from a file. Please see "man cut" for available options.
+The cut command is a command-line utility to cut a section from a file. Please see `man cut` for available options.
 
 To cut a section of file use "-c" (characters)
 
 ```bash
-cut -c1-10 SARS-CoV-2.fa
+cut -c1-10 Ebola.fa
 ```
 
-The option "-c1-10" will output the first 10 characters from each line of the input file. 
+The option `-c1-10` will output the first 10 characters from each line of the input file. 
 
 ```
 Few options: 
@@ -310,16 +298,16 @@ Few options:
 -f: field number 
 ```
 
-We have a text file named "human_viruses.txt" with with information containing the names of the viruses, GenBank ids and genome length. These fields are separated by `|` symbol.
+We have a text file named `viruses.txt` with with information containing the names of the viruses, GenBank IDs and genome length. These fields are separated by the `|` symbol.
 
 ```bash
-head human_viruses.txt
+head viruses.txt
 ```
 
-To get the list of GenBank ids of the viruses from the file,
+To get the list of GenBank IDs of the viruses from the file,
 
 ```bash
-cut -d "|" -f2 human_viruses.txt
+cut -d "|" -f2 viruses.txt
 ```
 
 *(b)* [sort](https://manpages.ubuntu.com/manpages/focal/en/man1/sort.1posix.html) \
@@ -335,7 +323,7 @@ Few options:
 ```
 
 ```bash
-sort -t "|" -nrk6 human_viruses.txt 
+sort -t "|" -nrk6 viruses.txt 
 ```
 
 *(c)* [grep](https://manpages.ubuntu.com/manpages/focal/en/man1/grep.1plan9.html) \
@@ -354,79 +342,73 @@ Few options:
 -w: word match 
 ```
 
-To get the list of all "Influenza D" viruses from 'human_viruses.txt' file,
+To get the list of all "Influenza D" viruses from `viruses.txt` file,
 
 ```bash
-grep "Influenza D" human_viruses.txt
+grep "Influenza A" viruses.txt
 ```
 
 *(d)* [wc](https://manpages.ubuntu.com/manpages/focal/en/man1/wc.1.html) \
-The command “wc” can be used in 2 ways, which counts lines, words or characters.
+The command `wc` can be used to count lines, words, or characters.
 
 ```bash
-wc -l outbreak.csv
+wc -l viruses.csv
 ```
 
 ```bash
-cat outbreak.csv | wc -l
+cat viruses.csv | wc -l
 ```
 
-*(e)* [uniq](https://manpages.ubuntu.com/manpages/focal/en/man1/uniq.1plan9.html) \
-The uniq command extracts unique lines from the input. It is usually used in combination with sort to count unique values in the input.
 
-To get the list of countries that has had an outbreak in 2024:
-
-```bash
-grep "2024" outbreak.csv | cut -d"," -f3 | sort | uniq
-```
-
-Other text processing commands worth looking at are: tr, rev, sed and paste.
 
 ### I/O control in Linux
 
-When you run a command, the output is usually sent to standard output (stdout) ie. the terminal. However, we can redirect the standard output to a file using ">".
+When you run a command, the output is usually sent to standard output (stdout) ie, the terminal. However, we can redirect the standard output to a file using `>`.
 
 ```bash
-ls > list
-cat list
+grep "Influenza A" viruses.txt > flu-file.txt
+
+cat flu-file.txt
 ```
 
-The first command creates a new file called list with all the file names in the directory. If there exists a file already named "list", it is overwritten with the output of the command. Instead, we can append to a file using ">>" redirection. 
+The first saves the output in a new file called `flu-file.txt`. If there is a file with the same name, it is overwritten with the output of the command. Instead, we can append to a file using `>>` redirection. 
 
-Another kind of output that is generated by programs is standard error. We must use “2>” to redirect it. 
+Another type of output generated by programs is standard error. We use `2>` to redirect it. 
 
+```
 ls foo 2> error
+```
 
-To redirect stdout and stderr to a file use "&>".
+To redirect stdout and stderr to a file, use `&>`.
 
 #### Pipes
 
-Piping in Linux is a very powerful and efficient way to combine commands. Pipes `|` in Linux act as connecting links between commands. Pipe redirects output of the first command as an input to the next command. We can nest as many commands as we want using pipes. They ensure smooth running of the command flow and reduces the execution time. 
+Piping in Linux is a compelling and efficient way to combine commands. Pipes `|` in Linux act as connecting links between commands. Pipe redirects the output of the first command as input to the following command. We can nest as many commands as we want using pipes. They ensure the smooth running of the command flow and reduce the execution time. 
 
-To print 10 smallest viruses,
+To print the 10 smallest viruses,
 
 ```bash
-sort -t"|" -nk6 human_viruses.txt | head -10
+sort -t"|" -nk6 viruses.txt | head -10
 ```
 
 We will be working on other examples during the course, where we use pipes to combine more than two commands. 
 
 ### Process control
 
-Some commands take time to finish the assigned job. For example, if you would like to compress a huge file with gzip command that takes a few minutes to finish running, you can run it in the background by appending the command with “&” (Another way is to suspend a command by pressing Ctrl+Z and typing “bg”). The completion of the task is indicated by “Done”.
+Some commands may take time to complete their assigned tasks. For example, if you would like to compress a huge file with gzip command that takes a few minutes to finish running, you can run it in the background by appending the command with “&” (Another way is to suspend a command by pressing Ctrl+Z and typing “bg”). The completion of the task is indicated by “Done”.
 
 ```bash
-gzip list &
+gunzip SRR21065613_?.fastq.gz &
 ```
 
-We can get list of currently running jobs in the terminal by “jobs” command. This will give you all the background jobs running in the current terminal. If you want to see all the running processes in the system, use “top”. You can get user specific details in top using "-U" option. 
+We can get a list of currently running jobs in the terminal by the `jobs` command. This will give you all the background jobs running in the current terminal. To view all running processes in the system, use the “top” command. You can get user-specific details in the top using "-U" option. 
 
 ```bash
 top
 ```
 
-Few of the important columns in top output: 
-
+A few of the essential columns in the `top` output: 
+```
 * PID: Process Id, this is a unique number used to identify the process 
 * COMMAND: Command Name 
 * S: Process Status: The status of the task which can be one of: 
@@ -435,55 +417,11 @@ Few of the important columns in top output:
   + S = sleeping 
   + T = traced or stopped 
   + Z = zombie 
+```
+To stop a running background job, use the `kill` command followed by the process ID. 
 
-If you want to stop a running background job use “kill” command followed by the process id. 
-
+```
 kill 1234
+```
 
-This command kills the job with the process id 1234. As a user you can kill only your jobs. You do not have permission to run this command on the process ids of other users.
-
-## Exercises
-
-1. Open a new terminal and navigate into Exercises directory.
-2. Extract first 100 lines of the fasta sequence from the file “NC_006577.2_cds_YP_173236.1_1.fa” and save the output into a new file “output_1.fa”
-3. How many fasta files are there in the “Exercises” directory?
-4. Extract all fasta header lines from the file “Betacoronaviruses.fa”.
-5. How many fasta sequences are present in the file “Betacoronaviruses.fa”?
-6. Copy the file “outbreak.csv” file from the “Linux” directory into “Exercises” directory and rename it as "2024_2023_outbreak.csv".
-7. From the file “2024_2023_outbreak.csv”, get the list of countries that had at least two outbreaks in 2024.
-8. Find the 50th line of the file “NC_039207.1_cds_YP_009513010.1_3.fa” using only the ‘tail’ and ‘head’ command.
-9. In the file “NC_038294.1_cds_YP_007188577.3_1.fa”, count the number of lines containing the sub-sequence “CCCCC”.
-10. How do you stop a process with pid 5678?
-11. Re-execute your previous command using a keyboard shortcut.
-12. Create a new directory named ‘Trial_move’ and move all files whose names begin with ‘NC_014470.1_cds_YP’ into the ‘Trial_move’ directory.
-13. Which is the command used to remove or delete a file without a confirmation prompt?
-14. __________ command is used to count the total number of lines, words and character in a file.
-15. From the headers of all the fasta files (except the Betacoronaviruses.fa) present in the Exercises directory, extract fields 2 to 4 using the space delimiter.
-16. Extract first 10 lines of “2024_2023_outbreak.csv”, sort them and save as “outbreak1.csv”. Extract first 20 lines of outbreak.csv, sort them and save as “outbreak2.csv”.
-17. Extract common lines between the files “outbreak1.csv” and “outbreak2.csv” (use “comm” command, type “man comm” to get information) and save the output into a file named “output3”.
-18. Which command would you use to find the word “pattern” from the file, “filename.txt”? Using that command, extract the “BioProject” information from the file SARS-CoV-2.gb.
-19. Use the file SARS-CoV-2.gb to extract protein identifiers (“protein_id”). Remove the pattern “protein_id” from the output.
-20. Which option with the command “rm” is required to remove a directory?
-
-## Solutions
-
-1. `cd Linux/Exercises`
-2. `head -100 NC_006577.2_cds_YP_173236.1_1.fa > output_1.fa` 
-3. `ls *.fa | wc -l`
-4. `grep "^>" Betacoronaviruses.fa`
-5. `grep "^>" Betacoronaviruses.fa | wc -l`
-6. `cp ../outbreak.csv 2024_2023_outbreak.csv` 
-7. `grep "2024" 2024_2023_outbreak.csv | cut -d"," -f3 | sort | uniq -c | grep -v 1`
-8. `head -50 NC_039207.1_cds_YP_009513010.1_3.fa | tail -1`
-9. `grep “CCCCC” NC_038294.1_cds_YP_007188577.3_1.fa | wc -l`
-10. `kill 5678`
-11. `!!`
-12. `mkdir Trial_move; mv NC_014470.1_cds_YP* Trial_move/.`
-13. `rm –f filename`
-14. `wc`
-15. `grep "^>" *.fa | grep -v Betacoronaviruses.fa | cut -d' ' -f2-4`
-16. `head -10 2024_2023_outbreak.csv | sort > outbreak1.csv; head -20 2024_2023_outbreak.csv | sort > outbreak2.csv`
-17. `comm -12 outbreak1.csv outbreak2.csv > output3`
-18. `grep "BioProject" SARS-CoV-2.gb` 
-19. `grep "protein_id" SARS-CoV-2.gb | cut -d"=" -f2`
-20. `rm –r dirname`
+This command kills the job with the process id 1234. As a user, you can kill only your jobs. You do not have permission to run this command on the process IDs of other users.
