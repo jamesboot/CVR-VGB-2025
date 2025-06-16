@@ -181,6 +181,8 @@ A help file explaining the different fastqc plots and analyses is here:
 
 [https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/)
 
+**Question:** technically, we have opened the fastqc report form the R1 file with the above firefox command - how would we view the R2 file's fastqc report?
+
 # 3: Trim Galore
  
 Typically, the first thing you want to do with your FASTQ reads is some basic quality control. The primary goal of this is to remove low quality reads and low quality ends of reads from the data as low quality = high error rate.
@@ -209,6 +211,8 @@ You should see these trimmed FASTQ files:
  
 * U2008751-n5\_S4\_L001\_R1\_001\_val\_1.fq    
 * U2008751-n5\_S4\_L001\_R2\_001\_val\_2.fq
+
+**Question:** - how many reads are left after trimming? Hint - think about using the **wc** command used previously.
 
 ## 4: Trimming on your own
 
