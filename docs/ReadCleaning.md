@@ -32,7 +32,7 @@ We first need to copy the data folder that we will need for this practical into 
 First, lets make sure we are in the right location on the server by moving into our home directory:
 
 ```
-cd ~
+cd
 ```
 
 Now enter the following command to copy the data folder for the practical:
@@ -111,7 +111,7 @@ A more detailed overview of the FASTQ reads can be viewed by using a program cal
 **Command to get basic reads stats from prinseq:**
 
 ```
-prinseq-lite.pl -stats_info -stats_len -stats_ns -fastq U2008751-n5_S4_L001_R1_001.fastq.gz -fastq2 U2008751-n5_S4_L001_R2_001.fastq.gz
+prinseq-lite.pl -stats_info -stats_len -stats_ns -fastq U2008751-n5_S4_L001_R1_001.fastq -fastq2 U2008751-n5_S4_L001_R2_001.fastq
 ```
 
 **NB:** The above is one command not two different ones!
