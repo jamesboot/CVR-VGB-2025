@@ -453,6 +453,8 @@ weeSAM --bam S1.bam --html S1
 **Question 8** – how many reads are unmapped? what is the average coverage and breadth of coverage?
 ***
 
+# Do not progress to consensus calling until after the consensus calling lecture - if you are looking for more stuff to do - jump to section 6: Extra Data
+
 # 4: Consensus calling
 
 We have now aigned each of our samples (S1 and S2) to the Wuhan-Hu-1 (NC_045512.2) SARS-CoV-2 reference genom sequence, and now we want to call a consensus sequence.
@@ -592,7 +594,7 @@ Breaking this command down:
 
 * **/software/snpEff/scripts/snpEff**: the name (and location) of the program we are using
 * **-ud 0**: Set upstream downstream interval length to 0
-* **NC_045512.2**: the reference file name
+* **NC_045512.2**: the reference name
 * **S1.vcf**: the input vcf file name
 * **S1_snpeff.vcf**: the annotated output vcf file name
 
