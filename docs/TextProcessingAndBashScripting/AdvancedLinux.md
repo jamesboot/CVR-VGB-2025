@@ -239,9 +239,9 @@ name="metadata.csv"
 
 #Print csv
 echo ${name: -3}
-#Also print fasta
+#Also print csv
 echo ${name: 9}
-#Also print fasta
+#Also print csv
 echo ${name: 9:3}
 ```
 
