@@ -4,6 +4,8 @@
 
 This tutorial introduces the fundamentals of  command-line text processing and Bash scripting. Linux is especially useful for life scientists and bioinformaticians who regularly handle large datasets, such as genome sequences and metadata.
 
+The data for the next two sessions is in `/home4/VBG_data/BashDatasets/`. Copy the whole directory into your home directory and work from within the directory.
+
 
 
 ## 1. Text processing
