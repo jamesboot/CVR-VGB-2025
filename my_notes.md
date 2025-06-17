@@ -11,4 +11,8 @@
 
 ## Reference alignment 
 - Mismtach threshold for viral sequences? Stick with defaults unless your sample is very divergent from reference
+- Coverage/depth:
+  - Coverage = how many reads cover a specific position - often averaged over the genome
+  - Breadth = how much of genome covered
+  - 
 
