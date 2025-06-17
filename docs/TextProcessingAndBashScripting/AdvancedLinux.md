@@ -414,3 +414,65 @@ done
 
 </br></details>
 
+
+## 6: Basic integer arithmetics
+
+Use the built-in `$((...))` syntax:
+
+```bash
+a=5
+b=3
+sum=$((a + b))        # Addition
+diff=$((a - b))       # Subtraction
+prod=$((a * b))       # Multiplication
+div=$((a / b))        # Division (integer only)
+mod=$((a % b))        # Modulus (remainder)
+
+echo "Sum: $sum"
+```
+
+This only works with integers. 
+Bash itself doesn't support decimals, but you can use `bc` (basic calculator).
+This can be quite useful when combined with other command line tools.
+
+### Task 10
+Write a script that calculates the number of reads in a fastq file.
+
+<details>
+  <summary>Don't cheat</summary>
+
+  ```bash
+#!/bin/bash
+file="$1"
+
+# Count the number of reads
+# Each read in FASTQ is 4 lines
+lines=$(wc -l < "$file")
+reads=$((lines / 4))
+
+echo "Number of reads in '$file': $reads"
+
+
+  ```
+
+</br></details>
+
+# Practicing bash
+
+### Task 11 
+Write a script that reverse complements a sequence
+
+### Task 12
+Improve your script so that it works with a file provided from the command line
+
+### Task 13
+Further improve your script so that it checks that there is a single sequence in your fasta file, if not it returns an error message.
+
+### Task 14
+Write a script that converts a fastq file to a fasta file with the input and output filenames pprovided on the command line.
+
+### Task 15
+Write a script that counds the number of sequences in a file. The input can be either fasta or fastq. So first check what the extension is and count the number of sequences accordingly.
+
+### Task 16
+Write a script that loops through all fastq files in a directory, for example: `fastq_data` and counts the number of reads in each file.
