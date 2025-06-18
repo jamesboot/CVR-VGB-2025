@@ -52,5 +52,16 @@
  - Maximum likelihood - more regiorous and stats based, compute probability of the observed data (sites in alignment) assuming it has evolved under a particular evolutionary tree, maximum likelihood tree is the tree with the highest probability of explaining the tree
  - Distance matrix is another method - just calculate the number of differences and use these as differences - numeric matrix and then plot
    - Substituion models are a way of doing distance matrices - many types of models, simpler the better, don't overfit with a super complicated model - Jukes-Cantor, Kimura 2, General Reversible - many tools will decide this for you
- - Bootstrapping - characters and resampled with replacement to create replicate data sets, each bootstrap is analysed, agreement is searched for between trees to create a consensus tree - you can show support values on the tree - really powerful 
- - 
+ - Bootstrapping - characters and resampled with replacement to create replicate data sets, each bootstrap is analysed, agreement is searched for between trees to create a consensus tree - you can show support values on the tree - really powerful
+ - iqtree2 looks really good. Takes PHYLIP or FASTA or CLUSTAL files - lots of options - conda install
+
+### Questions
+
+1. Data should be homologous if you have very different unrelated virus' you shouldn't analyse them! BLAST give you an idea of this before going in. Equally highly homolgous is not informative.
+2. Changing the analysis methods doesn't change the outputs very much, robust data and experiments lead to robusy findings which can be reproduced using different methods.
+3. Maximum likelihood is discrete - looking at specific sites in alignment. Distance method uses all data to create a numeric matrix. ML more popular.
+4. PhyML - tree search is quite cheap, not indepth, this makes it quick. RAxML and iqtree are much more sophisticated, more principled. Look up Heuristics!
+5. Substition model matters because you are trying to reflect the type of changes you get accurately. Different substition models model the changes differently. iqtree will assign the model and do the tree for you, you don't need to decide the model.
+6. Specific to the analysis, don't worry.
+7. Bootstrapping is resampling the analysis, samples the alignment, and repeats the analysis. Takes the consensus result.
+8. Why should be concerned about recombination - means that you have virus with sequences from different evolutionary background - software assumes a common evolutionary background. GAURD is a really good software for getting around this.
