@@ -68,7 +68,9 @@
 
 ## De novo assembly
 
+- Check out E-utilities from GenBank - helpful tool for downloading sequences and annotation files 
 - Read cleaning is important before de novo
+- Can handle segmented virus, you should just expect multiple contigs
 - Important to test multiple programs
 - Don't need a huge number of reads, can subsample, however there is a minimum depth
 - Gaps can be filled with read overhangs or clossest reference sequence
@@ -76,4 +78,19 @@
   - Greedy: pick two strings with largest overlap and replace them with their merge, and then keep adding to
   - OLC: build overlap graph, then merge reads and cimplify graph, then walk the graph, nodes are reads, edges are overlaps, hamiltonian path or eulerian path, computationally expensive
   - DB Graphs: take read, chop into k-mers, create graph of all k-mers (nodes) and edges become overlaps, walk the graph, does not store k-mer position in the read, if a genome has repetetive regions the graph will have many loops, contigs can end up being shorter than reads, k-mer size is very important - depends on the data
-  - Hybrid approach - combine more than one method, takes advantage of mulitple methods, but are more complex to implement and configure 
+  - Hybrid approach - combine more than one method, takes advantage of mulitple methods, but are more complex to implement and configure
+ 
+### Assembly validation
+- Is it the right orientation?
+- Why do I get multiple contigs? Coverage leading to gaps, or repetetive regions
+- Does sequence repeat itself? Could be due to circular assembly, or repetetion
+- If you use multiple assemblers which result can you trust?
+- Good result = few contigs which are long, how many Ns?
+- N50/NG50:
+  - Take all contigs, sort by size (longest first)
+  - N50: Count total length of the assembly (sum length of all contigs), calculate number of contigs needed to cover half of the assembly
+  - NG50 is the same but relative to the genome length
+- If yu don't get full lnegth assembly:
+  - Combine contigs from different assemblies into a scaffold
+  - Check for repetetive sequence and deal with them - how many repeats to keep? Read size? Does read size cover repeat regions?
+  - Can you fill gaps with read overhangs for reference genome?
