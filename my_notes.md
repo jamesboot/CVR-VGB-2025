@@ -65,3 +65,15 @@
 6. Specific to the analysis, don't worry.
 7. Bootstrapping is resampling the analysis, samples the alignment, and repeats the analysis. Takes the consensus result.
 8. Why should be concerned about recombination - means that you have virus with sequences from different evolutionary background - software assumes a common evolutionary background. GAURD is a really good software for getting around this.
+
+## De novo assembly
+
+- Read cleaning is important before de novo
+- Important to test multiple programs
+- Don't need a huge number of reads, can subsample, however there is a minimum depth
+- Gaps can be filled with read overhangs or clossest reference sequence
+- 3 algorithms: greedy, overlap layout consensus, de bruijn graphs
+  - Greedy: pick two strings with largest overlap and replace them with their merge, and then keep adding to
+  - OLC: build overlap graph, then merge reads and cimplify graph, then walk the graph, nodes are reads, edges are overlaps, hamiltonian path or eulerian path, computationally expensive
+  - DB Graphs: take read, chop into k-mers, create graph of all k-mers (nodes) and edges become overlaps, walk the graph, does not store k-mer position in the read, if a genome has repetetive regions the graph will have many loops, contigs can end up being shorter than reads, k-mer size is very important - depends on the data
+  - Hybrid approach - combine more than one method, takes advantage of mulitple methods, but are more complex to implement and configure 
