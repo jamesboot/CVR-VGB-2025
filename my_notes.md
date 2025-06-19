@@ -67,7 +67,6 @@
 8. Why should be concerned about recombination - means that you have virus with sequences from different evolutionary background - software assumes a common evolutionary background. GAURD is a really good software for getting around this.
 
 ## De novo assembly
-
 - Check out E-utilities from GenBank - helpful tool for downloading sequences and annotation files 
 - Read cleaning is important before de novo
 - Can handle segmented virus, you should just expect multiple contigs
@@ -94,3 +93,7 @@
   - Combine contigs from different assemblies into a scaffold
   - Check for repetetive sequence and deal with them - how many repeats to keep? Read size? Does read size cover repeat regions?
   - Can you fill gaps with read overhangs for reference genome?
+ 
+## Novel virus detection
+- single virus sequencing - droplet that only 1 virus can get into
+- 
