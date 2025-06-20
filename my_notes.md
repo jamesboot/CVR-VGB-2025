@@ -94,6 +94,6 @@
   - Check for repetetive sequence and deal with them - how many repeats to keep? Read size? Does read size cover repeat regions?
   - Can you fill gaps with read overhangs for reference genome?
  
-## Novel virus detection
-- single virus sequencing - droplet that only 1 virus can get into
-- 
+## k-mer based metagenomics
+- Kraken
+- --minimum-hit-groups flag can increase precision by increasing the number of kmers for classification
